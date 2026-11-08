@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <!-- Quadrant 1: Urgent & Important (Red) -->
+  <rect x="76" y="76" width="168" height="168" rx="28" fill="#ef4444" />
+  <circle cx="160" cy="160" r="28" fill="#ffffff" fill-opacity="0.9" />
+  <!-- Quadrant 2: Not Urgent, Important (Blue) -->
+  <rect x="268" y="76" width="168" height="168" rx="28" fill="#3b82f6" />
+  <rect x="332" y="140" width="40" height="40" rx="8" fill="#ffffff" fill-opacity="0.9" />
+  <!-- Quadrant 3: Urgent, Not Important (Amber/Yellow) -->
+  <rect x="76" y="268" width="168" height="168" rx="28" fill="#f59e0b" />
+  <path d="M160 332 L184 372 H136 Z" fill="#ffffff" fill-opacity="0.9" />
+  <!-- Quadrant 4: Not Urgent, Not Important (Emerald) -->
+  <rect x="268" y="268" width="168" height="168" rx="28" fill="#10b981" />
+  <path d="M334 352 L348 366 L376 338" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+</svg>

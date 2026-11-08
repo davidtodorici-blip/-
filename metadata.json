@@ -1,0 +1,6 @@
+{
+  "name": "Матрица Эйзенхауэра",
+  "description": "Минималистичный планировщик задач по методу Эйзенхауэра с поддержкой Drag-and-Drop, голосового ввода и PWA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

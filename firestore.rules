@@ -1,0 +1,47 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation helper for Task entity
+    function isValidTask(data) {
+      return data.keys().hasAll(['title', 'quadrant', 'completed', 'createdAt'])
+        && data.title is string
+        && data.title.size() > 0
+        && data.title.size() <= 500
+        && data.quadrant in ['q1', 'q2', 'q3', 'q4']
+        && data.completed is bool
+        && (data.createdAt is number || data.createdAt is timestamp);
+    }
+
+    // Shared tasks collection for real-time synchronization across devices
+    match /tasks/{taskId} {
+      allow read: if true;
+      allow create: if isValidId(taskId) && isValidTask(incoming());
+      allow update: if isValidId(taskId) && isValidTask(incoming());
+      allow delete: if isValidId(taskId);
+    }
+
+    // Test connection document
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}

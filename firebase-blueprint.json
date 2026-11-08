@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "An Eisenhower Matrix task item",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Task description or title",
+          "maxLength": 500
+        },
+        "quadrant": {
+          "type": "string",
+          "enum": ["q1", "q2", "q3", "q4"],
+          "description": "Eisenhower quadrant identifier"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Whether the task is completed"
+        },
+        "dueDate": {
+          "type": "string",
+          "description": "Optional ISO deadline date string"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp when task was created"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp when task was last modified"
+        }
+      },
+      "required": ["title", "quadrant", "completed", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Shared Eisenhower matrix tasks synchronized across all devices in real time"
+    }
+  }
+}
